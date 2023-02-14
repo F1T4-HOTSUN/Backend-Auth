@@ -1,9 +1,11 @@
 jwt:
   secret: abcdefghabcdefghabcdefghabcdefghabcdefghabcdefefeq
-
+member:
+  url: ${MEMBER_URL}
+  port: ${MEMBER_PORT}
 spring:
   redis:
-    host: localhost
-    port: 6379
+    host: ${REDIS_URL}
+    port: ${REDIS_PORT}
 server:
-  port: 8082
+  port: ${SERVER_PORT}

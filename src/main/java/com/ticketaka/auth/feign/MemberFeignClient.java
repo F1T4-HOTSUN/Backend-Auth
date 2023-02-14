@@ -3,13 +3,14 @@ package com.ticketaka.auth.feign;
 import com.ticketaka.auth.dto.request.LoginRequestDto;
 import com.ticketaka.auth.dto.request.SignupRequestDto;
 import com.ticketaka.auth.dto.response.InfoResponseDto;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
-@FeignClient(name="MemberFeignClient", url="localhost:8081",path="/member")
+@FeignClient(name="MemberFeignClient", url="${member.url}"+":${member.port}" ,path="/member")
 public interface MemberFeignClient {
 
     @PostMapping("/login")
