@@ -65,7 +65,7 @@ jobs:
       - name: Update Kubernetes resources
         run: |
           pwd
-          cd manifest/resoureces
+          cd manifest
           kustomize edit set image roheejae/ticketaka-auth=roheejae/eyestalk-react:${{ steps.tag_version.outputs.new_tag }}
           cat kustomization.yaml
       # 수정된 kustomization.yaml 파일 commit push
