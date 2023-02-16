@@ -18,8 +18,8 @@ public interface MemberFeignClient {
     @PostMapping("/signup")
     ResponseEntity<String> signUp(@RequestBody SignupRequestDto dto);
     // 이메일 중복 체크
-    @GetMapping("/login")
-    String checkDuplicateMember(@RequestParam String email);
+    @PostMapping("/checkDuplicateEmail")
+    ResponseEntity<String> checkDuplicateMember(@RequestBody Map<String,String> email);
 
     @PostMapping(path = "/logout",headers = "HEADER")
     ResponseEntity<String> logout(@RequestHeader Map<String, String> header);

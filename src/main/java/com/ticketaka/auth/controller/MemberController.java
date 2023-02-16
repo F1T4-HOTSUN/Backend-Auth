@@ -5,8 +5,10 @@ import com.ticketaka.auth.dto.request.SignupRequestDto;
 import com.ticketaka.auth.dto.response.InfoResponseDto;
 import com.ticketaka.auth.feign.MemberFeignClient;
 import com.ticketaka.auth.security.jwt.JwtUtils;
+import feign.FeignException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,8 +31,15 @@ public class MemberController {
        return memberFeignClient.signUp(dto);
     }
     // 이메일 중복 체크
-    @GetMapping("/signup")
-    public String checkDuplicateMember(@RequestParam String email){
+    @PostMapping("/checkDuplicateEmail")
+    public ResponseEntity<String> checkDuplicateMember(@RequestBody Map<String,String> email){
+        log.info("email Test {} ", email);
+        try{
+            memberFeignClient.checkDuplicateMember(email);
+        }catch(FeignException e){
+            log.error(e.toString());
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("중복");
+        }
         return memberFeignClient.checkDuplicateMember(email);
     }
 
