@@ -145,7 +145,7 @@ public class JwtUtils {
         }
     }
     public String getMemberIdFromHeader(Map<String, String> header){
-        return getMemberIdFromAccessToken(header.get("X-Authorization"));
+        return getMemberIdFromAccessToken(header.get("x-authorization"));
     }
     private String getMemberIdFromAccessToken(String token){
         // 예외처리 필요

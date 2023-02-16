@@ -29,7 +29,7 @@ public class MemberController {
        return memberFeignClient.signUp(dto);
     }
     // 이메일 중복 체크
-    @GetMapping("/login")
+    @GetMapping("/signup")
     public String checkDuplicateMember(@RequestParam String email){
         return memberFeignClient.checkDuplicateMember(email);
     }
@@ -38,9 +38,16 @@ public class MemberController {
 //    public ResponseEntity<String> logout(@RequestHeader Map<String, String> header){
 //        return memberFeignClient.logout();
 //    }
-    @GetMapping(path="/info", headers= "HEADER")
+    @GetMapping(path="/info")
     public ResponseEntity<InfoResponseDto> info(@RequestHeader Map<String, String> header){
-        return memberFeignClient.getInfo(Long.valueOf(jwtUtils.getMemberIdFromHeader(header)));
+        log.info("실행;");
+        String memberId = jwtUtils.getMemberIdFromHeader(header);
+        log.info("testing memberId  :{} ",memberId);
+        return memberFeignClient.getInfo(Long.valueOf(memberId));
+    }
+    @GetMapping(path = "")
+    public String info(){
+        return "Hello";
     }
 
     @GetMapping(path = "/adult",headers = "HEADER")
