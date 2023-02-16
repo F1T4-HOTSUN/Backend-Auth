@@ -144,12 +144,12 @@ public class JwtUtils {
             return e.getClaims();
         }
     }
-    public Long getMemberIdFromHeader(Map<String, String> header){
+    public String getMemberIdFromHeader(Map<String, String> header){
         return getMemberIdFromAccessToken(header.get("X-Authorization"));
     }
-    private Long getMemberIdFromAccessToken(String token){
+    private String getMemberIdFromAccessToken(String token){
         // 예외처리 필요
-        return Long.valueOf(parseClaims(token).get("memberId").toString());
+        return parseClaims(token).get("memberId").toString();
     }
 
 }

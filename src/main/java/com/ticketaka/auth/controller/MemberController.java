@@ -40,7 +40,7 @@ public class MemberController {
 //    }
     @GetMapping(path="/info", headers= "HEADER")
     public ResponseEntity<InfoResponseDto> info(@RequestHeader Map<String, String> header){
-        return memberFeignClient.getInfo(jwtUtils.getMemberIdFromHeader(header));
+        return memberFeignClient.getInfo(Long.valueOf(jwtUtils.getMemberIdFromHeader(header)));
     }
 
     @GetMapping(path = "/adult",headers = "HEADER")

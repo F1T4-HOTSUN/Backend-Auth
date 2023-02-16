@@ -3,6 +3,10 @@ jwt:
 member:
   url: ${MEMBER_URL}
   port: ${MEMBER_PORT}
+performance:
+  url: ${PERFORMANCE_URL}
+  port: ${PERFORMANCE_PORT}
+
 spring:
   redis:
     host: ${REDIS_URL}
