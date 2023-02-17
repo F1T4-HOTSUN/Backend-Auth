@@ -24,7 +24,7 @@ public interface MemberFeignClient {
     @PostMapping(path = "/logout",headers = "HEADER")
     ResponseEntity<String> logout(@RequestHeader Map<String, String> header);
 
-    @GetMapping  (path="/info")
+    @PostMapping  (path="/info")
     ResponseEntity<InfoResponseDto> getInfo(@RequestBody Long memberId);
 
     @GetMapping(path = "/adult",headers = "HEADER")
