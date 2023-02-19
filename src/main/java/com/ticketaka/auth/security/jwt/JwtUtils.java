@@ -130,7 +130,7 @@ public class JwtUtils {
     }
     //  Request Header 에서 refreshToken 추출
     public String getRefreshToken(HttpServletRequest request) {
-        String refreshToken = request.getHeader("R-Authorization");
+        String refreshToken = request.getHeader("r-authorization");
         log.info("refreshToken {}", refreshToken);
         if (StringUtils.hasText(refreshToken)) {
             return refreshToken; //앞에 Bearer 삭제

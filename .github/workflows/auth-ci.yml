@@ -27,7 +27,7 @@ jobs:
         id: docker_meta
         uses: crazy-max/ghaction-docker-meta@v1
         with:
-          images: roheejae/eyestalk-back
+          images: roheejae/ticketaka-auth
           tag-semver: |
             {{version}}
             {{major}}.{{minor}}
