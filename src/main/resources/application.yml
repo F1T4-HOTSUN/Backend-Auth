@@ -6,7 +6,9 @@ member:
 performance:
   url: ${PERFORMANCE_URL}
   port: ${PERFORMANCE_PORT}
-
+reservation:
+  url: ${RESERVATION_URL}
+  port: ${RESERVATION_PORT}
 spring:
   redis:
     host: ${REDIS_URL}

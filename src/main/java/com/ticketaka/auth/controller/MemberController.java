@@ -45,12 +45,12 @@ public class MemberController {
         return memberFeignClient.checkDuplicateMember(email);
     }
 
-    @PostMapping(path = "/logout",headers = "HEADER")
+    @PostMapping(path = "/logout")
     public ResponseEntity<String> logout(@RequestHeader Map<String, String> header){
         redisService.deleteValue(header.get("r-authorization"));
         return ResponseEntity.ok("logout");
     }
-    @PostMapping(path="/info")
+    @GetMapping(path="/info")
     public ResponseEntity<InfoResponseDto> info(@RequestHeader Map<String, String> header){
         log.info("실행;");
         String memberId = jwtUtils.getMemberIdFromHeader(header);

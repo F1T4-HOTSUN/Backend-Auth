@@ -121,7 +121,7 @@ public class JwtUtils {
     // Request Header 에서 accessToken추출
     public String getAccessToken(HttpServletRequest request) {
         log.info(request.toString());
-        String accessToken = request.getHeader("X-Authorization");
+        String accessToken = request.getHeader("x-authorization");
         log.info(accessToken);
         if (StringUtils.hasText(accessToken)) {
             return accessToken; //앞에 Bearer 삭제
