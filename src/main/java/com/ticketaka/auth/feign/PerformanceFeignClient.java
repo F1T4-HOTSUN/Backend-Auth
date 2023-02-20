@@ -14,17 +14,17 @@ import static org.springframework.data.domain.Sort.Direction.DESC;
 @FeignClient(name="PerformanceFeignClient", url="${performance.url}"+":${performance.port}" ,path="/performance")
 public interface PerformanceFeignClient {
     @GetMapping(value = "")
-    String getPerformanceById(@RequestParam(value = "p") String performanceId);
+    ResponseEntity<BaseResponse> getPerformanceById(@RequestParam(value = "p") String performanceId);
     @GetMapping("/session/{id}")
     ResponseEntity<BaseResponse> getPrfSessionById(@PathVariable(value = "id") int prfSessionId);
 
-    @PostMapping("/check")
+    @PostMapping("/rsv/check")
     public ResponseEntity<BaseResponse> checkReservation(@RequestBody WaitingListRequest request);
 
-    @PostMapping("/withdraw")
+    @PostMapping("/rsv/withdraw")
     public ResponseEntity<BaseResponse> withdrawReservation(@RequestBody WaitingListRequest request);
 
-    @PostMapping("/create")
+    @PostMapping("/rsv/create")
     public ResponseEntity<BaseResponse> createReservation(@RequestBody ReservationRequest request);
 
     @GetMapping("/search")

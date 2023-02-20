@@ -26,29 +26,28 @@ public class PerformanceController {
     private final PerformanceFeignClient performanceFeignClient;
     private final JwtUtils jwtUtils;
     @GetMapping("")
-    @JsonCreator
-    public ResponseEntity<String> getPerformanceById(@RequestParam(value = "p") String performanceId) {
-        String performanceById = performanceFeignClient.getPerformanceById(performanceId);
-        log.info("반환받은값 - {}", performanceById);
-        return ResponseEntity.ok().body(performanceById);
+    public ResponseEntity<BaseResponse> getPerformanceById(@RequestParam(value = "p") String performanceId) {
+        return performanceFeignClient.getPerformanceById(performanceId);
+
+       // return ResponseEntity.ok().body(performanceById);
     }
     @GetMapping("/session/{id}")
     public ResponseEntity<BaseResponse> getPrfSessionById(@PathVariable(value = "id") int prfSessionId) {
         return performanceFeignClient.getPrfSessionById(prfSessionId);
     }
 
-    @PostMapping("/check")
+    @PostMapping("/rsv/check")
     public ResponseEntity<BaseResponse> checkReservation(@RequestHeader Map<String,String> header, @RequestBody WaitingListRequest request) {
         request.setMemberId(jwtUtils.getMemberIdFromHeader(header));
         return performanceFeignClient.checkReservation(request);
     }
 
-    @PostMapping("/withdraw")
+    @PostMapping("rsv/withdraw")
     public ResponseEntity<BaseResponse> withdrawReservation(@RequestHeader Map<String,String> header, @RequestBody WaitingListRequest request) {
         request.setMemberId(jwtUtils.getMemberIdFromHeader(header));
         return performanceFeignClient.withdrawReservation(request);
     }
-    @PostMapping("/create")
+    @PostMapping("/rsv/create")
     public ResponseEntity<BaseResponse> createReservation(@RequestHeader Map<String,String> header, @RequestBody ReservationRequest request) {
         request.setMemberId(jwtUtils.getMemberIdFromHeader(header));
         return performanceFeignClient.createReservation(request);
