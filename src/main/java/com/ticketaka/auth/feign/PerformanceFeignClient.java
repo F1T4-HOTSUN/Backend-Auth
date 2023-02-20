@@ -13,8 +13,8 @@ import static org.springframework.data.domain.Sort.Direction.DESC;
 
 @FeignClient(name="PerformanceFeignClient", url="${performance.url}"+":${performance.port}" ,path="/performance")
 public interface PerformanceFeignClient {
-    @GetMapping("")
-    ResponseEntity<BaseResponse> getPerformanceById(@RequestParam(value = "p") String performanceId);
+    @GetMapping(value = "")
+    String getPerformanceById(@RequestParam(value = "p") String performanceId);
     @GetMapping("/session/{id}")
     ResponseEntity<BaseResponse> getPrfSessionById(@PathVariable(value = "id") int prfSessionId);
 

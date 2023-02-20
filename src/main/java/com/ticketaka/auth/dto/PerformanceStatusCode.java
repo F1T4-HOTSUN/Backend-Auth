@@ -1,8 +1,13 @@
 package com.ticketaka.auth.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
+
 public enum PerformanceStatusCode {
     // 성공
     OK(200,"성공"),

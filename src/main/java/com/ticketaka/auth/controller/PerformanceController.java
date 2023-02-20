@@ -1,11 +1,13 @@
 package com.ticketaka.auth.controller;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.ticketaka.auth.dto.request.performance.ReservationRequest;
 import com.ticketaka.auth.dto.request.performance.WaitingListRequest;
 import com.ticketaka.auth.dto.response.BaseResponse;
 import com.ticketaka.auth.feign.PerformanceFeignClient;
 import com.ticketaka.auth.security.jwt.JwtUtils;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
@@ -19,13 +21,16 @@ import static org.springframework.data.domain.Sort.Direction.DESC;
 
 @RequestMapping("/performance")
 @RequiredArgsConstructor
-
+@Slf4j
 public class PerformanceController {
     private final PerformanceFeignClient performanceFeignClient;
     private final JwtUtils jwtUtils;
     @GetMapping("")
-    public ResponseEntity<BaseResponse> getPerformanceById(@RequestParam(value = "p") String performanceId) {
-        return performanceFeignClient.getPerformanceById(performanceId);
+    @JsonCreator
+    public ResponseEntity<String> getPerformanceById(@RequestParam(value = "p") String performanceId) {
+        String performanceById = performanceFeignClient.getPerformanceById(performanceId);
+        log.info("반환받은값 - {}", performanceById);
+        return ResponseEntity.ok().body(performanceById);
     }
     @GetMapping("/session/{id}")
     public ResponseEntity<BaseResponse> getPrfSessionById(@PathVariable(value = "id") int prfSessionId) {
