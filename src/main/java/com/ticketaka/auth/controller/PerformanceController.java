@@ -65,7 +65,8 @@ public class PerformanceController {
         ResponseEntity<BaseResponse> prfByGenre = performanceFeignClient.getPrfByGenre(genre, pageable);
         log.info(prfByGenre.toString());
         log.info(prfByGenre.getBody().getDescription());
-        log.info(prfByGenre.getBody().getData().toString());
-        return prfByGenre;
+        BaseResponse bs = new BaseResponse<>(prfByGenre.getStatusCodeValue(), prfByGenre.getBody().getDescription(), prfByGenre.getBody().getData());
+        return ResponseEntity.ok(bs);
     }
+
 }
