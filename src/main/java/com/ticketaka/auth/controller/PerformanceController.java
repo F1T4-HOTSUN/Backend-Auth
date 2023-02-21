@@ -64,7 +64,8 @@ public class PerformanceController {
             @PageableDefault(size = 20, sort = "prfLoadedAt", direction = DESC) Pageable pageable) {
         ResponseEntity<BaseResponse> prfByGenre = performanceFeignClient.getPrfByGenre(genre, pageable);
         log.info(prfByGenre.toString());
-
+        log.info(prfByGenre.getBody().getDescription());
+        log.info(prfByGenre.getBody().getData().toString());
         return prfByGenre;
     }
 }
