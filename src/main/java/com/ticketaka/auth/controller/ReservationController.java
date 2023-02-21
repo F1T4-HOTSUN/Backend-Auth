@@ -1,6 +1,5 @@
 package com.ticketaka.auth.controller;
 
-import com.ticketaka.auth.dto.request.reservation.ReservationDTO;
 import com.ticketaka.auth.dto.response.ReservationListDTO;
 import com.ticketaka.auth.feign.ReservationFeignClient;
 import com.ticketaka.auth.security.jwt.JwtUtils;
@@ -20,11 +19,6 @@ public class ReservationController {
 
     private final ReservationFeignClient reservationFeignClient;
     private final JwtUtils jwtUtils;
-    @PostMapping("/create")
-    public ResponseEntity<String> reservation(@RequestHeader Map<String,String> header, @RequestBody ReservationDTO dto) {
-        dto.setMember_id(Long.valueOf(jwtUtils.getMemberIdFromHeader(header)));
-        return reservationFeignClient.reservation(dto);
-    }
     // ??
     @GetMapping("/list")
     public ResponseEntity<List<ReservationListDTO>> reservationList(@RequestHeader Map<String, String> header) {

@@ -62,7 +62,9 @@ public class PerformanceController {
     public ResponseEntity<BaseResponse> getPrfByGenre(
             @RequestParam(name = "genre") String genre,
             @PageableDefault(size = 20, sort = "prfLoadedAt", direction = DESC) Pageable pageable) {
+        ResponseEntity<BaseResponse> prfByGenre = performanceFeignClient.getPrfByGenre(genre, pageable);
+        log.info(prfByGenre.toString());
 
-        return performanceFeignClient.getPrfByGenre(genre, pageable);
+        return prfByGenre;
     }
 }

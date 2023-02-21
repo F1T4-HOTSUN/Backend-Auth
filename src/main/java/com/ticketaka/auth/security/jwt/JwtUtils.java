@@ -46,7 +46,7 @@ public class JwtUtils {
     public String generateRefreshToken() {
         long now = (new Date(System.currentTimeMillis())).getTime();
         return Jwts.builder()
-                .setExpiration(new Date(now + 86400000*30))
+                .setExpiration(new Date(now + 86400000L *30))
                 .signWith(key, SignatureAlgorithm.HS256)
                 .compact();
     }
