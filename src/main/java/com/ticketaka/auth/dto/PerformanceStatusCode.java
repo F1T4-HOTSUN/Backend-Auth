@@ -7,7 +7,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
-
 public enum PerformanceStatusCode {
     // 성공
     OK(200,"성공"),
@@ -24,9 +23,9 @@ public enum PerformanceStatusCode {
     RESERVATION_FAILED(400,"예약생성이 실패하였습니다.");
 
     private final int code;
-    private final String message;
-    PerformanceStatusCode(int code, String message) {
+    private final String description;
+    PerformanceStatusCode(int code, String description) {
         this.code = code;
-        this.message = message;
+        this.description = description;
     }
 }

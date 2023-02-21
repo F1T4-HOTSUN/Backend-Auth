@@ -36,7 +36,7 @@ public class SecurityConfig {
 //                .antMatchers("/member/signup").permitAll()
                 .antMatchers("/main/**").permitAll()
                 .antMatchers("/performance/**").permitAll()
-                .antMatchers("/performance/session").permitAll()
+                .antMatchers("/performance/rsv/**").permitAll()
                 .antMatchers("/reservation/**").permitAll()
                 .anyRequest().authenticated() // 그 밖에 요청은 모두 인증정보가 있어야 함
                 .and()
