@@ -1,4 +1,4 @@
-package com.ticketaka.auth.security.service;
+package com.ticketaka.auth.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.RedisTemplate;

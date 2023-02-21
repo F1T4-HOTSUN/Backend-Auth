@@ -3,6 +3,7 @@ package com.ticketaka.auth.feign;
 import com.ticketaka.auth.dto.request.LoginRequestDto;
 import com.ticketaka.auth.dto.request.SignupRequestDto;
 import com.ticketaka.auth.dto.response.InfoResponseDto;
+import com.ticketaka.auth.dto.response.LoginResponseDto;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +15,7 @@ import java.util.Map;
 public interface MemberFeignClient {
 
     @PostMapping("/login")
-    ResponseEntity<String> login(@RequestBody LoginRequestDto dto);
+    ResponseEntity<LoginResponseDto> login(@RequestBody LoginRequestDto dto);
     @PostMapping("/signup")
     ResponseEntity<String> signUp(@RequestBody SignupRequestDto dto);
     // 이메일 중복 체크

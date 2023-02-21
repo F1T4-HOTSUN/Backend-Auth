@@ -5,7 +5,8 @@ import com.ticketaka.auth.dto.request.SignupRequestDto;
 import com.ticketaka.auth.dto.response.InfoResponseDto;
 import com.ticketaka.auth.feign.MemberFeignClient;
 import com.ticketaka.auth.security.jwt.JwtUtils;
-import com.ticketaka.auth.security.service.RedisService;
+import com.ticketaka.auth.service.AuthService;
+import com.ticketaka.auth.service.RedisService;
 import feign.FeignException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,12 +22,14 @@ import java.util.Map;
 @RequestMapping("/member")
 public class MemberController {
     private final MemberFeignClient memberFeignClient;
+
+    private final AuthService authService;
     private final JwtUtils jwtUtils;
 
     private final RedisService redisService;
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody LoginRequestDto dto){
-        return memberFeignClient.login(dto);
+        return authService.login(dto);
     }
     @PostMapping("/signup")
     public ResponseEntity<String> signUp(@RequestBody SignupRequestDto dto){

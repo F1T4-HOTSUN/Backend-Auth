@@ -3,7 +3,7 @@ package com.ticketaka.auth.security.configuration;
 
 import com.ticketaka.auth.security.jwt.JwtAuthenticationFilter;
 import com.ticketaka.auth.security.jwt.JwtUtils;
-import com.ticketaka.auth.security.service.RedisService;
+import com.ticketaka.auth.service.RedisService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

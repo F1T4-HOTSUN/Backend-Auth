@@ -28,10 +28,8 @@ public interface PerformanceFeignClient {
     public ResponseEntity<BaseResponse> createReservation(@RequestBody ReservationRequest request);
 
     @GetMapping("/search")
-    ResponseEntity<BaseResponse> getPrfByKeyword(@RequestParam(name = "keyword") String keyword,
-                                                        @PageableDefault(size = 20, sort = "prfLoadedAt", direction = DESC) Pageable pageable);
+    ResponseEntity<BaseResponse> getPrfByKeyword(@RequestParam(name = "keyword") String keyword, @PageableDefault(size = 20, sort = "prfLoadedAt", direction = DESC) Pageable pageable);
     @GetMapping("/cat")
-    public ResponseEntity<BaseResponse> getPrfByGenre(@RequestParam(name = "genre") String genre,
-            @PageableDefault(size = 20, sort = "prfLoadedAt", direction = DESC) Pageable pageable);
+    public ResponseEntity<BaseResponse> getPrfByGenre(@RequestParam(name = "genre") String genre, @PageableDefault(size = 20, sort = "prfLoadedAt", direction = DESC) Pageable pageable);
 
 }

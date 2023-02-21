@@ -1,6 +1,6 @@
 package com.ticketaka.auth.security.jwt;
 
-import com.ticketaka.auth.security.service.RedisService;
+import com.ticketaka.auth.service.RedisService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
