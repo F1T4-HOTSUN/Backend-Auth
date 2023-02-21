@@ -5,12 +5,14 @@ import com.ticketaka.auth.dto.response.LoginResponseDto;
 import com.ticketaka.auth.feign.MemberFeignClient;
 import com.ticketaka.auth.security.jwt.JwtUtils;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class AuthServiceImpl implements AuthService{
     private final RedisService redisService;
     private final MemberFeignClient memberFeignClient;
@@ -18,9 +20,10 @@ public class AuthServiceImpl implements AuthService{
     public ResponseEntity<String> login(LoginRequestDto dto){
         ResponseEntity<LoginResponseDto> login = memberFeignClient.login(dto);
         Long memberId = login.getBody().getMemberId();
-
+        log.info("memberId - {}", memberId);
         String accessToken = jwtUtils.generateAccessToken(memberId);
         String refreshToken = jwtUtils.generateRefreshToken();
+
 
 
         //4. refresh 토큰을 Redis 에 저장 key - refreshToken value- memberId(String)
