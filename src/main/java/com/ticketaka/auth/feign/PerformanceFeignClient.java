@@ -30,6 +30,6 @@ public interface PerformanceFeignClient {
     @GetMapping("/search")
     ResponseEntity<BaseResponse> getPrfByKeyword(@RequestParam(name = "keyword") String keyword, @PageableDefault(size = 20, sort = "prfLoadedAt", direction = DESC) Pageable pageable);
     @GetMapping("/cat")
-    public ResponseEntity<BaseResponse> getPrfByGenre(@RequestParam(name = "genre") String genre, @PageableDefault(size = 20, sort = "prfLoadedAt", direction = DESC) Pageable pageable);
+    BaseResponse getPrfByGenre(@RequestParam(name = "genre") String genre, @PageableDefault(size = 20, sort = "prfLoadedAt", direction = DESC) Pageable pageable);
 
 }
