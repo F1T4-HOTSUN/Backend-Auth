@@ -12,14 +12,13 @@ import feign.FeignException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 @Service
@@ -34,16 +33,25 @@ public class MemberServiceImpl implements MemberService{
     public ResponseEntity<BaseResponse> login(LoginRequestDto dto){
         BaseResponse login = memberFeignClient.login(dto);
         if(login.getCode()==200){
-            LoginResponseDto data = (LoginResponseDto) login.getData();
-            Long memberId = data.getMemberId();
+            //LoginResponseDto data = (LoginResponseDto) login.getData();
+            //log.info("memberId - {} ", data.getMemberId());
+
+
+            LinkedHashMap map = (LinkedHashMap) login.getData();
+            log.info("map + {} " , map);
+
+            Long memberId = Long.valueOf((Integer) map.get("memberId"));
+            String role = (String) map.get("role");
+
             log.info("memberId - {}", memberId);
+            log.info("role - {} ", role);
             String accessToken = jwtUtils.generateAccessToken(memberId);
             String refreshToken = jwtUtils.generateRefreshToken();
 
 
 
             //4. refresh 토큰을 Redis 에 저장 key - refreshToken value- memberId(String)
-            redisService.setValues(refreshToken,memberId);
+            //redisService.setValues(refreshToken,memberId);
             // 5. 이후 토큰값을 헤더에 담아서 반환
             HttpHeaders headers = new HttpHeaders();
             headers.add("X-Authorization",accessToken);
