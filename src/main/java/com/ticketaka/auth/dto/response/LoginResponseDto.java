@@ -8,4 +8,6 @@ import lombok.*;
 @NoArgsConstructor
 public class LoginResponseDto {
     private Long memberId;
+    private String accessToken;
+    private String refreshToken;
 }

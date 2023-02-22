@@ -2,7 +2,7 @@ package com.ticketaka.auth.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.ticketaka.auth.dto.PerformanceStatusCode;
+import com.ticketaka.auth.dto.StatusCode;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,12 +17,12 @@ public class BaseResponse<T> {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private T data;
 
-    public BaseResponse(PerformanceStatusCode statusCode) {
+    public BaseResponse(StatusCode statusCode) {
         this.code = statusCode.getCode();
         this.description = statusCode.getDescription();
     }
 
-    public BaseResponse(PerformanceStatusCode statusCode,T data) {
+    public BaseResponse(StatusCode statusCode, T data) {
         this.code = statusCode.getCode();
         this.description = statusCode.getDescription();
         this.data = data;

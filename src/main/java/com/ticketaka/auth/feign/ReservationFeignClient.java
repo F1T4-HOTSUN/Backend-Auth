@@ -1,5 +1,6 @@
 package com.ticketaka.auth.feign;
 
+import com.ticketaka.auth.dto.response.BaseResponse;
 import com.ticketaka.auth.dto.response.ReservationListDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
@@ -11,11 +12,11 @@ import java.util.List;
 @FeignClient(name="ReservationFeignClient", url="${reservation.url}"+":${reservation.port}" ,path="/reservation")
 public interface ReservationFeignClient {
     @GetMapping("/list")
-    ResponseEntity<List<ReservationListDTO>> reservationList(@RequestBody String memberId);
+    BaseResponse reservationList(@RequestBody String memberId);
 
     @GetMapping("/list/{rsv_id}")
-    ResponseEntity<ReservationListDTO> reservationInfo(@PathVariable("rsv_id") Long reservationId);
+    BaseResponse reservationInfo(@PathVariable("rsv_id") Long reservationId);
 
     @DeleteMapping("/delete/{rsv_id}")
-    ResponseEntity<String> deleteReservation(@PathVariable("rsv_id") Long reservationId);
+    BaseResponse deleteReservation(@PathVariable("rsv_id") Long reservationId);
 }

@@ -1,13 +1,9 @@
 package com.ticketaka.auth.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 @Getter
-public enum PerformanceStatusCode {
+public enum StatusCode {
     // 성공
     OK(200,"성공"),
     // 검색 결과가 DB에 존재하지 않을 때
@@ -24,7 +20,7 @@ public enum PerformanceStatusCode {
 
     private final int code;
     private final String description;
-    PerformanceStatusCode(int code, String description) {
+    StatusCode(int code, String description) {
         this.code = code;
         this.description = description;
     }

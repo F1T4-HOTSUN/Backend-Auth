@@ -2,6 +2,7 @@ package com.ticketaka.auth.feign;
 
 import com.ticketaka.auth.dto.request.LoginRequestDto;
 import com.ticketaka.auth.dto.request.SignupRequestDto;
+import com.ticketaka.auth.dto.response.BaseResponse;
 import com.ticketaka.auth.dto.response.InfoResponseDto;
 import com.ticketaka.auth.dto.response.LoginResponseDto;
 import org.springframework.beans.factory.annotation.Value;
@@ -15,20 +16,18 @@ import java.util.Map;
 public interface MemberFeignClient {
 
     @PostMapping("/login")
-    ResponseEntity<LoginResponseDto> login(@RequestBody LoginRequestDto dto);
+    BaseResponse login(@RequestBody LoginRequestDto dto);
     @PostMapping("/signup")
-    ResponseEntity<String> signUp(@RequestBody SignupRequestDto dto);
+    BaseResponse signUp(@RequestBody SignupRequestDto dto);
     // 이메일 중복 체크
     @PostMapping("/checkDuplicateEmail")
-    ResponseEntity<String> checkDuplicateMember(@RequestBody Map<String,String> email);
+    BaseResponse checkDuplicateMember(@RequestBody Map<String,String> email);
 
     @PostMapping(path = "/logout",headers = "HEADER")
-    ResponseEntity<String> logout(@RequestHeader Map<String, String> header);
+    BaseResponse logout(@RequestHeader Map<String, String> header);
 
     @PostMapping  (path="/info")
-    ResponseEntity<InfoResponseDto> getInfo(@RequestBody Long memberId);
+    BaseResponse getInfo(@RequestBody Long memberId);
 
-    @GetMapping(path = "/adult",headers = "HEADER")
-    String checkAdult(@RequestHeader Map<String, String> header);
 
 }

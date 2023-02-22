@@ -1,14 +1,14 @@
 package com.ticketaka.auth.controller;
 
-import com.ticketaka.auth.dto.response.ReservationListDTO;
-import com.ticketaka.auth.feign.ReservationFeignClient;
-import com.ticketaka.auth.security.jwt.JwtUtils;
+import com.ticketaka.auth.dto.response.BaseResponse;
+import com.ticketaka.auth.service.ReservationService;
+import com.ticketaka.auth.util.ResponseUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+
 import java.util.Map;
 
 @RestController
@@ -17,22 +17,21 @@ import java.util.Map;
 @RequestMapping("/reservation")
 public class ReservationController {
 
-    private final ReservationFeignClient reservationFeignClient;
-    private final JwtUtils jwtUtils;
+    private final ReservationService reservationService;
+    private final ResponseUtils responseUtils;
     // ??
     @GetMapping("/list")
-    public ResponseEntity<List<ReservationListDTO>> reservationList(@RequestHeader Map<String, String> header) {
-        String memberId = jwtUtils.getMemberIdFromHeader(header);
-        return reservationFeignClient.reservationList(memberId);
+    public ResponseEntity<BaseResponse> reservationList(@RequestHeader Map<String, String> header) {
+        return responseUtils.makeResponse(reservationService.reservationList(header));
     }
 
     @GetMapping("/list/{rsv_id}")
-    public ResponseEntity<ReservationListDTO> reservationInfo(@PathVariable("rsv_id") Long reservationId) {
-        return reservationFeignClient.reservationInfo(reservationId);
+    public ResponseEntity<BaseResponse> reservationInfo(@PathVariable("rsv_id") Long reservationId) {
+        return responseUtils.makeResponse(reservationService.reservationInfo(reservationId));
     }
 
     @DeleteMapping("/delete/{rsv_id}")
-    public ResponseEntity<String> deleteReservation(@PathVariable("rsv_id") Long reservationId) {
-        return reservationFeignClient.deleteReservation(reservationId);
+    public ResponseEntity<BaseResponse> deleteReservation(@PathVariable("rsv_id") Long reservationId) {
+        return responseUtils.makeResponse(reservationService.deleteReservation(reservationId));
     }
 }
