@@ -10,6 +10,7 @@ import lombok.Setter;
 public class ReservationRequest {
     private String memberId;
     private String performanceId;
+    private String prfTitle;
     private String prfPoster;
     private int prfSessionId;
     private int price;
