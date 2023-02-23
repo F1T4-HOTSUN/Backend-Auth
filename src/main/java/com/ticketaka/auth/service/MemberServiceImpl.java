@@ -4,16 +4,14 @@ import com.ticketaka.auth.dto.StatusCode;
 import com.ticketaka.auth.dto.request.LoginRequestDto;
 import com.ticketaka.auth.dto.request.SignupRequestDto;
 import com.ticketaka.auth.dto.response.BaseResponse;
-import com.ticketaka.auth.dto.response.InfoResponseDto;
-import com.ticketaka.auth.dto.response.LoginResponseDto;
 import com.ticketaka.auth.feign.MemberFeignClient;
 import com.ticketaka.auth.security.jwt.JwtUtils;
-import feign.FeignException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -47,7 +45,6 @@ public class MemberServiceImpl implements MemberService{
             log.info("role - {} ", role);
             String accessToken = jwtUtils.generateAccessToken(memberId);
             String refreshToken = jwtUtils.generateRefreshToken();
-
 
 
             //4. refresh 토큰을 Redis 에 저장 key - refreshToken value- memberId(String)

@@ -1,6 +1,5 @@
 package com.ticketaka.auth.security.jwt;
 
-//import com.ticketaka.member.dto.TokenInfo;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
@@ -26,22 +25,11 @@ public class JwtUtils {
 
     // 테스팅용 JWT 토큰 비밀번호
     private final Key key;
-    //@Value("${jwt.secret}") - spring.bean 의 @Value 임 lombok 아님
 
     public JwtUtils(@Value("${jwt.secret}") String secretKey) {
         byte[] keyBytes = Decoders.BASE64.decode(secretKey);
         this.key = Keys.hmacShaKeyFor(keyBytes);
     }
-//    public TokenInfo generateToken(Long memberId){
-//        String accessToken = generateAccessToken(memberId);
-//        String refreshToken = generateRefreshToken();
-//
-//        return TokenInfo.builder()
-//                .grantType("Bearer")
-//                .accessToken(accessToken)
-//                .refreshToken(refreshToken)
-//                .build();
-//    }
 
     public String generateRefreshToken() {
         long now = (new Date(System.currentTimeMillis())).getTime();
