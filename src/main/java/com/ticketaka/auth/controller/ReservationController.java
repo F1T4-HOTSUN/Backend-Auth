@@ -20,7 +20,7 @@ public class ReservationController {
     private final ReservationService reservationService;
     private final ResponseUtils responseUtils;
     // ??
-    @GetMapping("/list")
+    @GetMapping("/lists")
     public ResponseEntity<BaseResponse> reservationList(@RequestHeader Map<String, String> header) {
         return responseUtils.makeResponse(reservationService.reservationList(header));
     }
