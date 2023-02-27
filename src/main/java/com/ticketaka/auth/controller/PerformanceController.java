@@ -27,7 +27,6 @@ public class PerformanceController {
     @GetMapping("")
     public ResponseEntity<BaseResponse> getPerformanceById(@RequestParam(value = "p") String performanceId) {
         return responseUtils.makeResponse(performanceService.getPerformanceById(performanceId));
-
        // return ResponseEntity.ok().body(performanceById);
     }
     @GetMapping("/session/{id}")
@@ -37,16 +36,16 @@ public class PerformanceController {
 
     @PostMapping("/rsv/check")
     public ResponseEntity<BaseResponse> checkReservation(@RequestHeader Map<String,String> header, @RequestBody WaitingListRequest request) {
-        return responseUtils.makeResponse(performanceService.checkReservation(header,request));
+        return responseUtils.makeResponse(performanceService.checkReservation(header,request)); // 필요
     }
 
     @PostMapping("rsv/withdraw")
     public ResponseEntity<BaseResponse> withdrawReservation(@RequestHeader Map<String,String> header, @RequestBody WaitingListRequest request) {
-        return responseUtils.makeResponse(performanceService.withdrawReservation(header,request));
+        return responseUtils.makeResponse(performanceService.withdrawReservation(header,request)); //필요
     }
     @PostMapping("/rsv/create")
     public ResponseEntity<BaseResponse> createReservation(@RequestHeader Map<String,String> header, @RequestBody ReservationRequest request) {
-        return responseUtils.makeResponse(performanceService.createReservation(header,request));
+        return responseUtils.makeResponse(performanceService.createReservation(header,request)); //필요
     }
     @GetMapping("/search")
     public ResponseEntity<BaseResponse> getPrfByKeyword(@RequestParam(name = "keyword") String keyword,

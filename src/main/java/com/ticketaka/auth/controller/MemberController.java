@@ -38,11 +38,11 @@ public class MemberController {
 
     @PostMapping(path = "/logout")
     public ResponseEntity<BaseResponse> logout(@RequestHeader Map<String, String> header){
-        return responseUtils.makeResponse(memberService.logout(header));
+        return responseUtils.makeResponse(memberService.logout(header)); // 필요
     }
     @GetMapping(path="/info")
     public ResponseEntity<BaseResponse> info(@RequestHeader Map<String, String> header){
-        return responseUtils.makeResponse(memberService.info(header));
+        return responseUtils.makeResponse(memberService.info(header)); //필요
     }
 
 }
