@@ -35,7 +35,7 @@ public class JwtUtils {
         long now = (new Date(System.currentTimeMillis())).getTime();
         return Jwts.builder()
                 .setExpiration(new Date(now + 86400000L *30))
-                .signWith(key, SignatureAlgorithm.HS256)
+                .signWith(key,SignatureAlgorithm.ES256)
                 .compact();
     }
 
